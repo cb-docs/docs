@@ -51,6 +51,16 @@ If the request was successful, the server responds with a `200` status code with
       ]
 ```
 
+\{/\*
+
+Claude got descriptions right and provided some expected pieces of the curl command and response. 
+
+However, Claude seemed to require an Authorization token for the GET function, which the API doesn't need. It also used different syntax: status=received instead of status.eq~Received. 
+
+It guessed at field names, mistaking id for order\_id and items for dish\_ids. All of these mistakes would seem plausible at first glance.
+
+\*/\}
+
 ## 2. Prioritization
 
 ### Request
