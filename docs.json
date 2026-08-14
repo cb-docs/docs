@@ -11,7 +11,7 @@
   "navigation": {
     "pages": [
       {
-        "group": "Getting Started",
+        "group": "Point of Service (POS) Documentation",
         "pages": [
           "index"
         ]
@@ -19,21 +19,11 @@
     ],
     "global": {
       "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
       ]
     },
     "groups": [
       {
-        "group": "Getting Started",
+        "group": "Point of Service (POS) Documentation",
         "pages": [
           "index"
         ]
@@ -70,10 +60,6 @@
     ]
   },
   "footer": {
-    "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
     }
   }
 }
