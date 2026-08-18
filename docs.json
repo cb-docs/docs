@@ -64,9 +64,9 @@
         "group": "Point of Service (POS) API",
         "pages": [
           "index",
-          "api-flows/the-admin-api-flow",
-          "api-flows/patron",
-          "api-flows/the-admin-api-flow",
+          "api-flows/auth",
+          "api-flows/admin",
+          "api-flows/staff",
           "api-flows/patron"
         ]
       }
