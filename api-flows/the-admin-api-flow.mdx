@@ -1,0 +1,154 @@
+---
+title: "The Admin API Flow"
+icon: "user-cog"
+---
+
+The Staff API flow follows the complete food preparation process from the perspective of the restaurant staff.
+
+## 1. Admin login
+
+### Request
+
+The client sends an HTTP request, providing the user details.
+
+```shellscript
+{
+  "grant_type": "password",
+  "user_name": "admin",
+  "password": "P@ssw0rd!"
+}
+```
+
+### Response
+
+If the request was successful, the server responds with a `201` status code with the response body containing the authentication information.
+
+```json
+{
+    "created_at": "2026-08-18T17:43:57.548Z",
+    "updated_at": "2026-08-18T17:43:57.548Z",
+    "access_token": "f6112461-3513-442d-b76f-cc80ec5c0ef0",
+    "expires_at": "2026-08-18T18:13:57.548Z",
+    "refresh_token": "90f428bf-45c6-4379-bfb6-16de7c1e2684",
+    "token_type": "Bearer",
+    "user_name": "admin",
+    "_id": "6a8499dde26ac0595d98368d",
+    "__v": 0
+}
+```
+
+## 2. Create ingredients
+
+### Request
+
+The client sends an HTTP request, creating each ingredient with its relevant details.
+
+```shellscript
+curl -X 'POST' \
+  'https://bookish-potato-967rw54rwqwwfx5qq-80.app.github.dev/ingredients' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer 3daf3961-4729-48df-8e06-ef5886b35d15' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Arborio Rice",
+  "in_stock_qty": 30,
+  "price": 600
+}'
+```
+
+### Response
+
+If the request was successful, the server responds with a `201` status code with the response body containing the ingredient details.
+
+```json
+{
+  "id": "6a84a5de3085e0e0bbe78028",
+  "created_at": "2026-08-18T18:35:10.447Z",
+  "updated_at": "2026-08-18T18:35:10.447Z",
+  "name": "Arborio Rice",
+  "in_stock_qty": 30,
+  "price": 600
+}
+```
+
+## 3. Create dishes
+
+### Request
+
+The client sends an HTTP request, creating a dish and associating it with the relevant ingredients.
+
+```shellscript
+curl -X 'POST' \
+  'https://bookish-potato-967rw54rwqwwfx5qq-80.app.github.dev/dishes' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer 3daf3961-4729-48df-8e06-ef5886b35d15' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Arancini",
+  "description": "A rice ball stuffed with mozarella, breaded, and then fried.",
+  "category": "Main Course",
+  "image_name": "arancini",
+  "ingredients": [
+    {
+      "ingredient_id": "6a84a5de3085e0e0bbe78028",
+      "is_essential": true
+    },
+    {
+      "ingredient_id": "6a3420277b22606bb2fa50f0",
+      "is_essential": true
+    },
+    {
+      "ingredient_id": "6a3420277b22606bb2fa50ec",
+      "is_essential": false
+    },
+    {
+      "ingredient_id": "6a3420277b22606bb2fa50eb",
+      "is_essential": true
+    }
+  ],
+  "preparation_time": 45,
+  "price": 1299,
+  "station": "hot"
+}'
+```
+
+### Response
+
+If the request was successful, the server responds with a `201` status code with the response body containing the dish details.
+
+```json
+{
+  "id": "6a84a6e13085e0e0bbe7803c",
+  "created_at": "2026-08-18T18:39:29.758Z",
+  "updated_at": "2026-08-18T18:39:29.758Z",
+  "name": "Arancini",
+  "description": "A rice ball stuffed with mozarella, breaded, and then fried.",
+  "category": "Main Course",
+  "price": 1299,
+  "preparation_time": 45,
+  "image_name": "arancini",
+  "ingredients": [
+    {
+      "ingredient_id": "6a84a5de3085e0e0bbe78028",
+      "is_essential": true,
+      "_id": "6a84a6e13085e0e0bbe7803d"
+    },
+    {
+      "ingredient_id": "6a3420277b22606bb2fa50f0",
+      "is_essential": true,
+      "_id": "6a84a6e13085e0e0bbe7803e"
+    },
+    {
+      "ingredient_id": "6a3420277b22606bb2fa50ec",
+      "is_essential": false,
+      "_id": "6a84a6e13085e0e0bbe7803f"
+    },
+    {
+      "ingredient_id": "6a3420277b22606bb2fa50eb",
+      "is_essential": true,
+      "_id": "6a84a6e13085e0e0bbe78040"
+    }
+  ],
+  "station": "hot"
+}
+```

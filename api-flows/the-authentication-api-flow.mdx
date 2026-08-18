@@ -1,0 +1,103 @@
+---
+title: "The Authentication API Flow"
+icon: "fingerprint"
+---
+
+The Authentication API flow follows the initial authentication process for the POS API.
+
+## 1. Account creation
+
+### Request
+
+The client sends an HTTP request, adding the information for the new user account to the system.
+
+```shellscript
+curl -X 'POST' \
+  'https://bookish-potato-967rw54rwqwwfx5qq-80.app.github.dev/users' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "email": "chef@food.com",
+  "password": "P@ssw0rd!",
+  "role": "chef",
+  "user_name": "chef"
+}'
+```
+
+### Response
+
+If the request was successful, the server responds with a `201` status code with the response body containing the user details.
+
+```json
+{
+  "id": "6a849ad5e26ac0595d983690",
+  "created_at": "2026-08-18T17:48:05.327Z",
+  "updated_at": "2026-08-18T17:48:05.327Z",
+  "user_name": "chef",
+  "password": "P@ssw0rd!",
+  "email": "chef@food.com",
+  "role": "chef"
+}
+```
+
+## 2. Admin login
+
+### Request
+
+The client sends an HTTP request, providing the user details.
+
+```shellscript
+{
+  "grant_type": "password",
+  "user_name": "chef",
+  "password": "P@ssw0rd!"
+}
+```
+
+### Response
+
+If the request was successful, the server responds with a `201` status code with the response body containing the authentication information.
+
+```json
+{
+    "created_at": "2026-08-18T17:43:57.548Z",
+    "updated_at": "2026-08-18T17:43:57.548Z",
+    "access_token": "f6112461-3513-442d-b76f-cc80ec5c0ef0",
+    "expires_at": "2026-08-18T18:13:57.548Z",
+    "refresh_token": "90f428bf-45c6-4379-bfb6-16de7c1e2684",
+    "token_type": "Bearer",
+    "user_name": "chef",
+    "_id": "6a8499dde26ac0595d98368d",
+    "__v": 0
+}
+```
+
+## 3. Refresh the access token
+
+### Request
+
+The client sends an HTTP request, requesting a new token.
+
+```shellscript
+{
+  "refresh_token": "90f428bf-45c6-4379-bfb6-16de7c1e2684"
+}
+```
+
+### Response
+
+If the request was successful, the server responds with a `200` status code with the response body containing the new token information.
+
+```json
+{
+  "_id": "6a8499dde26ac0595d98368d",
+  "created_at": "2026-08-18T17:55:12.137Z",
+  "updated_at": "2026-08-18T17:55:12.137Z",
+  "access_token": "5d0f3f88-c606-439a-9545-1c9a3a483159",
+  "expires_at": "2026-08-18T18:25:12.137Z",
+  "refresh_token": "b46b9a77-64a7-4412-823e-ddcbe10032ab",
+  "token_type": "Bearer",
+  "user_name": "chef",
+  "__v": 0
+}
+```

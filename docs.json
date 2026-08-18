@@ -63,9 +63,7 @@
       {
         "group": "Point of Service (POS) API",
         "pages": [
-          "index",
-          "api-flows/patron",
-          "api-flows/staff"
+          "index"
         ]
       }
     ]
