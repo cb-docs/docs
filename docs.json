@@ -44,13 +44,32 @@
     ],
     "display": "header"
   },
-  {
   "navigation": {
-    "pages": [
-      "api-flows/auth",
-      "api-flows/admin",
-      "api-flows/patron",
-      "api-flows/staff"
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Documentation",
+          "icon": "book-open-cover",
+          "href": "https://mintlify.com/docs"
+        },
+        {
+          "anchor": "Blog",
+          "icon": "newspaper",
+          "href": "https://mintlify.com/blog"
+        }
+      ]
+    },
+    "groups": [
+      {
+        "group": "Point of Service (POS) API",
+        "pages": [
+          "index",
+          "api-flows/the-admin-api-flow",
+          "api-flows/patron",
+          "api-flows/the-admin-api-flow",
+          "api-flows/patron"
+        ]
+      }
     ]
   }
 }
